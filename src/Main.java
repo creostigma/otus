@@ -17,10 +17,11 @@ public class Main {
 
         while (true) {
             String commandStr = "";
+            boolean invalidCommand = Arrays.stream(CommandsData.values()).toList().contains(commandStr);
             do {
                 System.out.println("Введите комманду add/list/exit");
                 commandStr = scanner.next().toUpperCase().trim();
-            } while (!commandStr.equals("ADD") && !commandStr.equals("LIST") && !commandStr.equals("EXIT"));
+            } while (invalidCommand);
             CommandsData commandsData = CommandsData.valueOf(commandStr);
             switch (commandsData) {
                 case ADD -> {
