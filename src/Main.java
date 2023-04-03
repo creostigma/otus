@@ -17,10 +17,16 @@ public class Main {
 
         while (true) {
             String commandStr = "";
-            boolean invalidCommand = Arrays.stream(CommandsData.values()).toList().contains(commandStr);
+            boolean invalidCommand = true;
             do {
                 System.out.println("Введите комманду add/list/exit");
                 commandStr = scanner.next().toUpperCase().trim();
+                try {
+                    CommandsData.valueOf(commandStr);
+                    invalidCommand = false;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Недопустимое значение команды. Пожалуйста, повторите ввод:");
+                }
             } while (invalidCommand);
             CommandsData commandsData = CommandsData.valueOf(commandStr);
             switch (commandsData) {
